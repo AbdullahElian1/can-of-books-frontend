@@ -5,8 +5,11 @@ import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 // import login from './login';
-import myFavoriteBooks from './myFavoriteBooks';
+import MyFavoriteBooks from './myFavoriteBooks';
 import Login from './login';
+import Profile from './Profile';
+
+
 
 
 import {
@@ -16,6 +19,7 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
+  state = { redirect: null };
 
   render() {
     console.log('app', this.props)
@@ -29,10 +33,16 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/">
                   {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-                  { (isAuthenticated ?  <myFavoriteBooks /> : <Login />) }
+                  { (isAuthenticated ?  <MyFavoriteBooks /> : <Login />) }
 
                 </Route>
                 {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+                {/* {(this.state.redirect ?  <Redirect to={this.state.redirect} /> : this.setState({ redirect: "/Profile" }) ) } */}
+                <Route path="/Profile">
+                  <Profile />
+
+                </Route>
+)
               </Switch>
             <Footer />
           {/* </IsLoadingAndError> */}
