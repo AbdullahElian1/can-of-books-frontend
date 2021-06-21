@@ -1,0 +1,19 @@
+.d-block {
+    width:70%;
+    text-align:center;
+    /* color:black; */
+    margin: 2% auto 2% auto;
+    /* margin-right: auto; */
+    height: 1000px;
+    border-radius: 15%;
+  }
+
+  .d-block h3,p{
+      text-align: center;
+      color: black;
+      font-size: 1.5rem;
+  }
+  h3{
+      color: black;
+      font-weight: bolder;
+  }

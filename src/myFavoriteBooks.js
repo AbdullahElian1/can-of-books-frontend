@@ -2,18 +2,23 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import './myFavoriteBooks.css';
+import Carousel from 'react-bootstrap/Carousel'
+import axios from 'axios';
+import { withAuth0 } from '@auth0/auth0-react';
+import Bestbook from './Bestbook';
 
 class MyFavoriteBooks extends React.Component {
+
   render() {
-    return(
-      <Jumbotron>
-        <h1>My Favorite Books</h1>
-        <p>
-          This is a collection of my favorite books
-        </p>
-      </Jumbotron>
+    return (
+<>
+     <Bestbook data={this.props.data}/>
+     </>
     )
   }
 }
 
-export default MyFavoriteBooks;
+export default withAuth0(MyFavoriteBooks);
+
+
+
