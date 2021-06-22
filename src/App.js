@@ -9,6 +9,7 @@ import MyFavoriteBooks from './myFavoriteBooks';
 import Login from './login';
 import Profile from './Profile';
 import axios from 'axios';
+import BookFormModal from './component/BookFormModal';
 
 
 
@@ -26,7 +27,9 @@ class App extends React.Component {
     super(props)
     this.state={
       data: [],
-      flag:true
+      flag:true,
+      showModal:false,
+      newBook:{}
 
     }
   }
@@ -40,9 +43,50 @@ class App extends React.Component {
         data:bookData,
         flag:false
       })
-      console.log(this.state.data);
+      console.log('s');
   })
   }
+ 
+  updateModal=()=>{
+    this.setState({
+      showModal:!this.state.showModal,
+    })
+  }
+
+  getBookDataFromForm=(event)=>{
+    event.preventDefault();
+    
+    const bookInfo2 = {
+      name: event.target.book.value,
+      description: event.target.des.value,
+      status:event.target.Status.value,
+      email:this.props.auth0.user.email
+    }
+    let url=`http://localhost:3010/addbook`;
+    
+    axios.post(url,bookInfo2).then((result)=>{
+      this.setState({
+        data:result.data,
+        
+      })
+
+    });
+
+
+
+  }
+
+  deleteBook = async(index)=>{
+    const userName = {
+      email:this.props.auth0.user.email
+        }
+    let result = await axios.delete(`http://localhost:3010/deletebook/${index}`,{ params: userName })
+    this.setState({
+      data:result.data
+    })
+
+  }
+
 
 
 
@@ -61,7 +105,8 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/">
                   {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-                  { (isAuthenticated ?  <MyFavoriteBooks data={this.state.data}/> : <Login />) }
+                  { (isAuthenticated ?  <MyFavoriteBooks data={this.state.data} deletebook={this.deleteBook}/> : <Login />) }
+                  {isAuthenticated&& <BookFormModal updatBook={this.updateModal} flag={this.state.showModal} bookInfo={this.getBookDataFromForm}/>}
 
                 </Route>
                 {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}

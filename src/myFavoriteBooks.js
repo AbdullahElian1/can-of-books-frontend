@@ -12,7 +12,7 @@ class MyFavoriteBooks extends React.Component {
   render() {
     return (
 <>
-     <Bestbook data={this.props.data}/>
+     <Bestbook data={this.props.data} deletebook={this.props.deletebook}/>
      </>
     )
   }
