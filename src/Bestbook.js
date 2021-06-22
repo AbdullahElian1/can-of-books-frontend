@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Carousel from 'react-bootstrap/Carousel'
+import Button from 'react-bootstrap/Button'
 import './Bestbook.css'
+import Card from 'react-bootstrap/Card';
 
 
 
@@ -9,32 +10,31 @@ export class Bestbook extends Component {
         return (
 
             <>
-              <Carousel>
-                {this.props.data.map((item) => {
+           
+                {this.props.data.map((item,idx) => {
                   return (
-      
-                    <Carousel.Item>
-                      <img
-                        className="d-block"
-                        src={item.url}
-                        alt="First slide"
-                      />
-                      <Carousel.Caption>
-                        <h3> {item.name}</h3>
-                        <p>{item.description}</p>
-                      </Carousel.Caption>
-                    </Carousel.Item>
-      
-      
+                    <Card className="text-center" key={idx}>
+  
+                    <Card.Body>
+                      <Card.Title>{item.name}</Card.Title>
+                      <Card.Text>
+                      {item.description}
+                      </Card.Text>
+                      <Button variant="primary"  onClick={()=>this.props.deletebook(idx)}>Delete</Button>
+                    </Card.Body>
+                    <Card.Footer className="text-muted">2 days ago</Card.Footer>
+                  </Card>
+                  
       
                   );
                 })}
       
       
-              </Carousel>
+              
             </>
           )
     }
 }
 
 export default Bestbook
+
