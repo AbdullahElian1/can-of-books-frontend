@@ -5,3 +5,36 @@ a{
 a:hover{
   color:darkgrey;
 }
+/* .navbar-brand{
+  text-align: center;
+  font-size: 2rem;
+  padding-left: 30%;
+} */
+
+.logbutton{
+  position: absolute;
+right: 2%;
+}
+
+#test button{
+  margin-right:40% ;
+}
+#test{
+  padding: 1%;
+
+}
+
+.title{position: absolute;
+right: 44%;
+font-size: 1.5rem;
+font-weight: bold;
+}
+
+.nav{
+  padding: 1rem;
+}
+
+.nav a{
+  
+  margin-left: 5%;
+}
