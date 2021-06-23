@@ -27,12 +27,16 @@ class App extends React.Component {
     super(props)
     this.state = {
       data: [],
-      BookDataForUpdate:{},
+      BookDataForUpdate:'',
       flag: true,
+      idx:0,
 
       flagUpdateBook: false,
       showModal: false,
-      newBook: {}
+      newBook: {},
+      bookName:'',
+      des:'',
+      status:''
 
     }
   }
@@ -102,14 +106,33 @@ class App extends React.Component {
 
   }
 
-fillDataInForm= (item) =>{
-this.setState({
-  BookDataForUpdate:item
+fillDataInForm= async (item,index) =>{
+await this.setState({
+  BookDataForUpdate:item,
+  idx:index
 })
-console.log(item);
+console.log(this.state.BookDataForUpdate);
 }
 
-
+updateBook=(object)=>{
+  // CHECkout The DATA BEFOR SEND IT 
+  console.log("inside update");
+  const objectsBooks = {
+    name : object.name,
+    description : object.description,
+    status: object.status,
+    email:this.props.auth0.user.email,
+  }
+  console.log(objectsBooks);
+  let index=this.state.idx;
+  let url = `http://localhost:3010/updatebook/${index}`;
+  console.log(url);
+  axios.put(url,objectsBooks).then((result)=>{
+    this.setState({
+      data: result.data,
+    });
+  })
+}
 
 
 
@@ -127,7 +150,7 @@ console.log(item);
           <Switch>
             <Route exact path="/">
               {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-              {(isAuthenticated ? <MyFavoriteBooks data={this.state.data} deletebook={this.deleteBook} updatBookModal={this.updatBookModal} flagUpdateBook={this.state.flagUpdateBook} test={this.fillDataInForm} /> : <Login />)}
+              {(isAuthenticated ? <MyFavoriteBooks data={this.state.data} deletebook={this.deleteBook} updatBookModal={this.updatBookModal} flagUpdateBook={this.state.flagUpdateBook} test={this.fillDataInForm}  inputData={this.state.BookDataForUpdate} modifyBook={this.updateBook}/> : <Login />)}
 
               {isAuthenticated && <BookFormModal updatBook={this.updateModal} flag={this.state.showModal} bookInfo={this.getBookDataFromForm} />}
 
