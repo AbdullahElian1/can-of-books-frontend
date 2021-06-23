@@ -2,27 +2,33 @@ import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
+import ModifyBookModal from './ModifyBookModal'
+import './BookFormModal.css'
 
 
 export class BookFormModal extends Component {
-    
-    // getBookDataFromForm=(event)=>{
-    //     event.preventDefault();
-        
-    //     //   let newBook= event.target.book.value;
-    
-    //     console.log(event.target.value);
-    
-    
-    //   }
 
-    render() {
-        return (
-            <div>
-                <button type="submit" onClick={this.props.updatBook}>Add Book</button>
 
-                <Modal show={this.props.flag} onHide={this.props.updatBook}>
+
+  // getBookDataFromForm=(event)=>{
+  //     event.preventDefault();
+
+  //     //   let newBook= event.target.book.value;
+
+  //     console.log(event.target.value);
+
+
+  //   }
+
+  render() {
+    return (
+      <div>
+        {/* <button type="submit">Add Book</button> */}
+        <Button variant="primary" size="lg" onClick={this.props.updatBook} className="button1" active>
+          Add Book
+        </Button>{' '}
+
+        <Modal show={this.props.flag} onHide={this.props.updatBook}>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
               {this.props.title1}
@@ -32,18 +38,18 @@ export class BookFormModal extends Component {
             <Form onSubmit={this.props.bookInfo}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Book Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter Book Name" name="book"/>
+                <Form.Control type="text" placeholder="Enter Book Name" name="book" required />
                 <Form.Text className="text-muted">
                   Pleas add your book.
                 </Form.Text>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Description </Form.Label>
-                <Form.Control type="text" placeholder="Description" name="des" />
+                <Form.Control type="text" placeholder="Description" name="des" required />
               </Form.Group>
               <Form.Group controlId="exampleForm.SelectCustom">
                 <Form.Label>Status</Form.Label>
-                <Form.Control as="select" custom name="Status">
+                <Form.Control as="select" custom name="Status" >
                   <option value="lifeChanging">Life Changing </option>
                   <option value="favoriteFive">Favorite Five</option>
                   <option value="recommendedtoMe">Recommended to Me </option>
@@ -58,10 +64,11 @@ export class BookFormModal extends Component {
             {/* <Button onClick={this.close}>Close</Button> */}
           </Modal.Footer>
         </Modal>
-                       
-            </div>
-        )
-    }
+
+
+      </div>
+    )
+  }
 }
 
 export default BookFormModal
