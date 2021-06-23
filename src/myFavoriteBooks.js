@@ -12,7 +12,8 @@ class MyFavoriteBooks extends React.Component {
   render() {
     return (
 <>
-     <Bestbook data={this.props.data} deletebook={this.props.deletebook}/>
+     <Bestbook data={this.props.data} deletebook={this.props.deletebook} updatBook={this.props.updatBook} flag={this.props.flag}/>
+     
      </>
     )
   }

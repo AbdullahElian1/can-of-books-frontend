@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
+import ModifyBookModal from './ModifyBookModal'
 
 
 export class BookFormModal extends Component {
+
+
     
     // getBookDataFromForm=(event)=>{
     //     event.preventDefault();
@@ -58,6 +60,7 @@ export class BookFormModal extends Component {
             {/* <Button onClick={this.close}>Close</Button> */}
           </Modal.Footer>
         </Modal>
+
                        
             </div>
         )

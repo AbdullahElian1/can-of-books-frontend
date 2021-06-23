@@ -48,6 +48,7 @@ class App extends React.Component {
   }
  
   updateModal=()=>{
+    console.log('test');
     this.setState({
       showModal:!this.state.showModal,
     })
@@ -105,7 +106,7 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/">
                   {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
-                  { (isAuthenticated ?  <MyFavoriteBooks data={this.state.data} deletebook={this.deleteBook}/> : <Login />) }
+                  { (isAuthenticated ?  <MyFavoriteBooks data={this.state.data} deletebook={this.deleteBook} updatBook={this.updateModal} flag={this.state.showModal}/> : <Login />) }
                   {isAuthenticated&& <BookFormModal updatBook={this.updateModal} flag={this.state.showModal} bookInfo={this.getBookDataFromForm}/>}
 
                 </Route>
