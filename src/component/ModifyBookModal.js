@@ -8,14 +8,14 @@ export class ModifyBookModal extends Component {
         return (
             <div>
                 
-<Modal show={this.props.flag} onHide={this.props.updatBook}>
+<Modal show={this.props.flagUpdateBook} onHide={this.props.updatBookModal}>
 <Modal.Header closeButton>
 <Modal.Title id="contained-modal-title-vcenter">
 {this.props.title1}
 </Modal.Title>
 </Modal.Header>
 <Modal.Body>
-<Form onSubmit={this.props.bookInfo}>
+<Form >
 <Form.Group className="mb-3" controlId="formBasicEmail">
 <Form.Label>Book Name</Form.Label>
 <Form.Control type="text" placeholder="Enter Book Name" name="book"/>
@@ -35,7 +35,7 @@ export class ModifyBookModal extends Component {
   <option value="recommendedtoMe">Recommended to Me </option>
 </Form.Control>
 </Form.Group>
-<Button variant="primary" type="submit" onClick={this.props.updatBook}>
+<Button variant="primary" type="submit" onClick={this.props.updatBookModal} >
 Submit
 </Button>
 </Form>

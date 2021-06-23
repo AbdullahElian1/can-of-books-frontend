@@ -7,6 +7,10 @@ import ModifyBookModal from './component/ModifyBookModal';
 
 
 export class Bestbook extends Component {
+  editDta=(item)=>{
+    this.props.updatBookModal();
+    this.props.test(item);
+  }
     render() {
         return (
 
@@ -22,7 +26,7 @@ export class Bestbook extends Component {
                       {item.description}
                       </Card.Text>
                       <Button variant="primary"  onClick={()=>this.props.deletebook(idx)}>Delete</Button>
-                      <Button variant="primary" onClick={this.props.updatBook}>Update</Button>
+                      <Button variant="primary" onClick={()=>this.editDta(item)}>Update</Button>
                     </Card.Body>
                     <Card.Footer className="text-muted">2 days ago</Card.Footer>
                   </Card>
@@ -31,7 +35,7 @@ export class Bestbook extends Component {
                   );
                 })}
 
-        <ModifyBookModal updatBook={this.props.updatBook} flag={this.props.flag}/>
+        <ModifyBookModal updatBookModal={this.props.updatBookModal} flagUpdateBook={this.props.flagUpdateBook}/>
 
 
                 
